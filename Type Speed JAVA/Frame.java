@@ -158,19 +158,19 @@ public class Frame extends JFrame implements ActionListener, KeyListener {
             repaint();
         }
     }
-    public static String getPassage()
-    {
-        ArrayList<String> Passages=new ArrayList<String>();
-        String pas1="Robotics blends engineering, computer science, and AI to create machines performing tasks once requiring human intelligence. Starting in mid-20th-century manufacturing, robots now range from autonomous vehicles to medical devices. AI integration enables learning and decision-making, transforming industries like healthcare with surgical robots and logistics with automated delivery. Exploring hazardous environments, robots gather data and perform dangerous tasks, promising a future of enhanced human-robot collaboration and improved quality of life.";
-        String pas2="Politics is the process of making decisions that apply to members of a group, often within governments. It involves the negotiation and implementation of policies, laws, and regulations. Key political activities include voting, debating, and lobbying. Political systems vary worldwide, from democracies to autocracies, shaping how power is distributed and exercised. The impact of politics is profound, influencing societal structures, economic policies, and individual rights, ultimately shaping the course of nations and communities.";
-        String pas3="The discovery of fire marked a pivotal moment in human history. Early humans learned to harness fire around 1.7 million years ago, transforming their way of life. Fire provided warmth, protection from predators, and a means to cook food, making it more digestible and nutritious. This discovery not only enhanced survival but also fostered social gatherings, leading to advances in communication and community building, profoundly shaping human evolution and culture.";
-        String pas4="Nikola Tesla was a pioneering inventor and electrical engineer whose work revolutionized the field of electricity. Born in 1856 in modern-day Croatia, Tesla developed the alternating current (AC) system, which became the standard for electrical power distribution. His innovations include the Tesla coil, wireless communication technologies, and early contributions to radio. Despite financial struggles and limited recognition in his lifetime, Tesla's visionary ideas and inventions laid the foundation for modern electrical engineering and technology.";
-        String pas5="The Himalayas, the world's highest mountain range, stretch across five countries: India, Nepal, Bhutan, China, and Pakistan. Home to Mount Everest, the tallest peak on Earth, the Himalayas span over 2,400 kilometers. These majestic mountains influence regional climate, providing water to major rivers like the Ganges and the Brahmaputra. Rich in biodiversity, the Himalayas are a cultural and spiritual hub, housing ancient monasteries and diverse communities, and playing a vital role in the ecological and cultural fabric of South Asia.";
-        String pas6="Cars, integral to modern life, revolutionized transportation in the 20th century. Invented in the late 19th century, they evolved from steam and gasoline engines to today's electric and hybrid models. Cars provide personal mobility, enabling people to travel long distances quickly and conveniently. They have shaped urban planning, economies, and social dynamics. While offering immense benefits, cars also present challenges such as traffic congestion and environmental impact, driving the push for sustainable and innovative automotive technologies.";
-        String pas7="Software design is the process of conceptualizing and creating software solutions to meet specific needs or solve problems. It involves defining architecture, components, interfaces, and data for a system to ensure functionality, scalability, and maintainability. Key aspects include requirements analysis, system modeling, and user interface design. Effective software design balances technical constraints with user needs, laying the foundation for robust, efficient, and user-friendly applications that drive innovation across various industries.";
-        String pas8="Human intelligence encompasses the ability to learn, reason, solve problems, and adapt to new situations. It involves cognitive processes such as memory, perception, and language. Human intelligence is not limited to academic skills but also includes emotional intelligence, creativity, and social understanding. This multifaceted capability enables humans to innovate, build complex societies, and navigate the world. The study of human intelligence spans psychology, neuroscience, and artificial intelligence, seeking to understand and replicate these remarkable mental abilities.";
-        String pas9="Future technology promises to reshape the way we live, work, and interact. Advancements in artificial intelligence will enhance automation, allowing machines to perform complex tasks and make decisions. Innovations in biotechnology may lead to breakthroughs in medicine, potentially eradicating diseases and prolonging life. Quantum computing holds the potential to solve problems currently deemed impossible. Moreover, the integration of the Internet of Things (IoT) will create smarter homes and cities. As these technologies converge, they will transform industries, improve quality of life, and redefine human experiences.";
-        String pas10="Subhash Chandra Bose was a prominent leader in the Indian independence movement against British rule. Born in 1897, he advocated for complete independence through armed struggle, differing from the non-violent approach of Gandhi. Bose founded the Indian National Army (INA) to fight for India's freedom and sought international support, particularly from Axis powers during World War II. His famous slogan, \"Give me blood, and I shall give you freedom,\" inspired many. Bose's legacy as a nationalist leader continues to resonate in India’s history and independence narrative.";
+    public static String getPassage() {
+        ArrayList<String> Passages = new ArrayList<>();
+        String pas1 = "Robotics blends engineering, computer science, and AI to create machines performing tasks once requiring human intelligence. Robots now range from autonomous vehicles to medical devices.";
+        String pas2 = "Politics is the process of making decisions that apply to members of a group, often within governments. It involves negotiation and implementation of policies and laws.";
+        String pas3 = "The discovery of fire marked a pivotal moment in human history. Fire provided warmth, protection, and a means to cook food, enhancing survival and fostering social gatherings.";
+        String pas4 = "Nikola Tesla was a pioneering inventor whose work revolutionized electricity. He developed the alternating current (AC) system, which became the standard for electrical power distribution.";
+        String pas5 = "The Himalayas, the world's highest mountain range, stretch across five countries: India, Nepal, Bhutan, China, and Pakistan. They influence climate and provide water to major rivers.";
+        String pas6 = "Cars revolutionized transportation in the 20th century. They provide personal mobility, enabling long-distance travel. However, they also present challenges like traffic congestion.";
+        String pas7 = "Software design is the process of creating software solutions to meet specific needs. It involves defining architecture, components, and user interfaces for effective applications.";
+        String pas8 = "Human intelligence encompasses the ability to learn, reason, and solve problems. It includes cognitive processes and emotional intelligence, enabling innovation and societal development.";
+        String pas9 = "Future technology promises to reshape our lives. Advancements in AI will enhance automation and decision-making. Innovations in biotechnology may lead to breakthroughs in medicine.";
+        String pas10 = "Subhash Chandra Bose was a prominent leader in the Indian independence movement. He advocated for complete independence through armed struggle and founded the Indian National Army.";
+    
         Passages.add(pas1);
         Passages.add(pas2);
         Passages.add(pas3);
@@ -181,15 +181,26 @@ public class Frame extends JFrame implements ActionListener, KeyListener {
         Passages.add(pas8);
         Passages.add(pas9);
         Passages.add(pas10);
-        Random rand= new Random();
-        int place=(rand.nextInt(10));
-        String toReturn=Passages.get(place).substring(0,200);
-        if(toReturn.charAt(199)==32)
-        {
-            toReturn=toReturn.strip();
-            toReturn=toReturn+".";
+    
+        Random rand = new Random();
+        int place = rand.nextInt(Passages.size());
+        String toReturn = Passages.get(place);
+    
+        // Trim to 200 characters and ensure it ends correctly
+        if (toReturn.length() > 200) {
+            toReturn = toReturn.substring(0, 200);
+            if (toReturn.charAt(199) != ' ') {
+                // Optionally trim to the last space to avoid cutting off mid-word
+                int lastSpace = toReturn.lastIndexOf(' ');
+                if (lastSpace > -1) {
+                    toReturn = toReturn.substring(0, lastSpace);
+                }
+            }
+            toReturn = toReturn.strip() + ".";
         }
-        return(toReturn);
+    
+        return toReturn;
     }
+    
     
 }
